@@ -2,12 +2,16 @@ package br.com.ada.pablo.livraria.transacao;
 
 import br.com.ada.pablo.livraria.pessoa.Pessoa;
 import br.com.ada.pablo.livraria.livro.Livro;
+import br.com.ada.pablo.livraria.util.validacoes.ValidaQuantidadeLivro;
+import br.com.ada.pablo.livraria.util.validacoes.ValidaSaldo;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -36,6 +40,10 @@ public class Transacao {
 
     @Column(name = "preco")
     private BigDecimal preco;
+
+    @ElementCollection
+    @CollectionTable(name = "lista_de_livros")
+    private List<Livro> livros = new ArrayList<>();
 
     public Transacao(RefTransacao refTransacao, Pessoa pessoa, Livro livro, Integer qtdLivro) {
         this.refTransacao = refTransacao;
