@@ -13,6 +13,7 @@ public abstract class Produto implements Serializable {
 
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @Column(name = "pessoa_id")
     private Long id;
 
     @Column
@@ -29,18 +30,7 @@ public abstract class Produto implements Serializable {
     @Column
     private Genero genero;
     @Column
-    private Date data;
-
-    @Column
     private Integer quantidade;
-
-    public Date getData() {
-        return data;
-    }
-
-    public void setData(Date data) {
-        this.data = data;
-    }
 
     public Long getId() {
         return id;

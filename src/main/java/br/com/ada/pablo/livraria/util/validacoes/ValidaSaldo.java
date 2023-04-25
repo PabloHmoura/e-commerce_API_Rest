@@ -2,6 +2,7 @@ package br.com.ada.pablo.livraria.util.validacoes;
 
 import br.com.ada.pablo.livraria.livro.Livro;
 import br.com.ada.pablo.livraria.pessoa.Pessoa;
+import br.com.ada.pablo.livraria.transacao.dto.CriarTransacaoDto;
 
 import java.math.BigDecimal;
 

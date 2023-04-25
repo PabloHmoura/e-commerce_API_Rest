@@ -5,6 +5,6 @@ import br.com.ada.pablo.livraria.livro.Livro;
 public class ValidaQuantidadeLivro {
 
     public static boolean quantidadeLivroMaiorIgualZero(Livro livro, Integer qtd) {
-        return livro.getQuantidade() -qtd >= 0;
+        return livro.getQuantidade() - qtd >= 0;
     }
 }

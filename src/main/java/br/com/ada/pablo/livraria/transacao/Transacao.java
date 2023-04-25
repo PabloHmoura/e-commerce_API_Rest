@@ -1,39 +1,29 @@
 package br.com.ada.pablo.livraria.transacao;
 
+import br.com.ada.pablo.livraria.item.ItemTransacao;
 import br.com.ada.pablo.livraria.pessoa.Pessoa;
-import br.com.ada.pablo.livraria.livro.Livro;
-import br.com.ada.pablo.livraria.util.validacoes.ValidaQuantidadeLivro;
-import br.com.ada.pablo.livraria.util.validacoes.ValidaSaldo;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Getter
-@NoArgsConstructor
-@AllArgsConstructor
-@Table(name = "transacao")
 public class Transacao {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_transacao")
     private Long id;
 
     @Enumerated(EnumType.STRING)
     private RefTransacao refTransacao;
 
-    @ManyToOne
-    @JoinColumn(name = "pessoa")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "pessoa_id")
     private Pessoa pessoa;
-
-    @ManyToOne
-    @JoinColumn(name = "livro")
-    private Livro livro;
 
     @Column(name = "qtd_livro")
     private Integer quantidadeLivro;
@@ -41,17 +31,32 @@ public class Transacao {
     @Column(name = "preco")
     private BigDecimal preco;
 
-    @ElementCollection
-    @CollectionTable(name = "lista_de_livros")
-    private List<Livro> livros = new ArrayList<>();
+    @OneToMany
+    @JoinColumn(name = "id_transacao")
+    private List<ItemTransacao> livros;
 
-    public Transacao(RefTransacao refTransacao, Pessoa pessoa, Livro livro, Integer qtdLivro) {
+    public Transacao(RefTransacao refTransacao, Pessoa pessoa, List<ItemTransacao> livros) {
         this.refTransacao = refTransacao;
         this.pessoa = pessoa;
-        this.livro = livro;
-        this.quantidadeLivro = qtdLivro;
-        this.preco = livro.getPreco().multiply(BigDecimal.valueOf(qtdLivro));
+        this.livros = livros;
+        this.quantidadeLivro = getTotalLivros(livros);
+        this.preco = getTotalCompra(livros);
     }
 
+    public Integer getTotalLivros(List<ItemTransacao> livros) {
+        int totalLivros = 0;
+        for(ItemTransacao item : livros) {
+            totalLivros += item.getQuantidade();
+        }
+        return totalLivros;
+    }
+
+    public BigDecimal getTotalCompra(List<ItemTransacao> livros) {
+        BigDecimal totalLivros = new BigDecimal("0");
+        for(ItemTransacao item : livros) {
+            totalLivros.add(item.getPrecoTotal());
+        }
+        return totalLivros;
+    }
 
 }

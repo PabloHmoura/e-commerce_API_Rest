@@ -1,16 +1,11 @@
 package br.com.ada.pablo.livraria.transacao;
 
-import br.com.ada.pablo.livraria.livro.Livro;
-import br.com.ada.pablo.livraria.livro.LivroService;
-import br.com.ada.pablo.livraria.pessoa.Pessoa;
-import br.com.ada.pablo.livraria.pessoa.PessoaService;
-import br.com.ada.pablo.livraria.util.validacoes.ValidaQuantidadeLivro;
-import br.com.ada.pablo.livraria.util.validacoes.ValidaSaldo;
+import br.com.ada.pablo.livraria.exception.TransacaoInvalidaException;
+import br.com.ada.pablo.livraria.transacao.dto.TransacaoDto;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-
-import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -33,10 +28,9 @@ public class TransacaoController {
 
 
     @PostMapping(
-            value = "/{idPessoa}",
-            produces = {MediaType.APPLICATION_JSON_VALUE}
-    )
-    public Transacao criarTransacao(@PathVariable Integer qtd, @PathVariable Long idPessoa, @PathVariable Long idLivro) {
-        return transacaoService.create(idLivro, idPessoa, qtd);
+            consumes = {MediaType.APPLICATION_JSON_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    public Transacao criarTransacao(@RequestBody TransacaoDto dados) throws TransacaoInvalidaException {
+        return transacaoService.create(dados);
     }
 }

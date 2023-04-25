@@ -1,17 +1,16 @@
 package br.com.ada.pablo.livraria.transacao.dto;
 
 
-import br.com.ada.pablo.livraria.livro.Livro;
 import jakarta.validation.constraints.NotEmpty;
-
-import java.util.List;
-
+import java.math.BigDecimal;
 
 public record CriarTransacaoDto(
         @NotEmpty
-        Long idPessoa,
+        Long idLivro,
         @NotEmpty
-        List<ListaQuantideLivroDto> quantideLivroDtos,
+        Integer quantidade,
         @NotEmpty
-        List<Livro> livros) {
+        BigDecimal precoUnitario,
+        @NotEmpty
+        BigDecimal precoTotal) {
 }
