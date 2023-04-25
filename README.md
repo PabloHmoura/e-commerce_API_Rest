@@ -28,11 +28,32 @@ E cadastrar um livro com o JSON a seguir
     }
     
     
-Por enquanto a transação está sendo criada passando a quantidade, id do livro e id da pessoa na Url como mostrado a seguir
+Para criar uma transação, você precisa passar o seguinte JSON com o método de requisição Post.
 
-      http://localhost:8080/api/transacao/49-2-2
+                {
+            "idPessoa": 1,
+            "lista": [
+              {
+                "idLivro": 1,
+                "quantidade": 1,
+                "precoUnitario": 49.9,
+                "precoTotal": 99.8
+              },
+              {
+                "idLivro": 2,
+                "quantidade": 1,
+                "precoUnitario": 49.9,
+                "precoTotal": 99.8
+              }
+            ]
+          }
+
+A Entidade Transacao possui uma sub entidade chamada ItemTransacao que permite a compra de vários livros em uma única transação.
       
-      
-Projeto ainda está em desenvolvimento e ainda irá receber uma série de modificações como inserção de imagens, validações e notificação.
+Para criar a transação, os DTOs que recebem os dados para criação da transação não permite que o idLivro, quantidade, precoUnitario e precoTotal cheguem com valores Null ou vazio.
+
+
+
+Projeto ainda está em desenvolvimento e ainda irá receber uma série de modificações como inserção de imagens, notificação, validações de DTOs para as demais Entidades.
 
 Testes automatizados também serão realizados neste projeto futuramente.
