@@ -1,4 +1,4 @@
-package br.com.ada.pablo.livraria.util;
+package br.com.ada.pablo.livraria.util.enums;
 
 public enum Categoria {
 

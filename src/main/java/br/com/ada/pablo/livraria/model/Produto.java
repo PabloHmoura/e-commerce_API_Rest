@@ -1,19 +1,18 @@
 package br.com.ada.pablo.livraria.model;
 
-import br.com.ada.pablo.livraria.util.Categoria;
-import br.com.ada.pablo.livraria.util.Genero;
+import br.com.ada.pablo.livraria.util.enums.Categoria;
+import br.com.ada.pablo.livraria.util.enums.Genero;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
 
 @MappedSuperclass
-public abstract class Produto implements Serializable {
+public abstract class Produto {
 
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    @Column(name = "pessoa_id")
+    @Column(name = "produto_id")
     private Long id;
 
     @Column

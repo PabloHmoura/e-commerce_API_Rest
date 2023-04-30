@@ -1,6 +1,7 @@
 package br.com.ada.pablo.livraria.transacao;
 
 import br.com.ada.pablo.livraria.exception.TransacaoInvalidaException;
+import br.com.ada.pablo.livraria.transacao.dto.ListarTransacoesDto;
 import br.com.ada.pablo.livraria.transacao.dto.TransacaoDto;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

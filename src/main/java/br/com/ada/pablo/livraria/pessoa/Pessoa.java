@@ -1,5 +1,6 @@
 package br.com.ada.pablo.livraria.pessoa;
 
+import br.com.ada.pablo.livraria.transacao.Transacao;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,6 +20,7 @@ import java.util.Date;
 public class Pessoa {
 
     @Id
+    @Column(name = "pessoa_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column (name = "nome")
@@ -33,6 +35,7 @@ public class Pessoa {
     private String telefone;
     @Column (name = "saldo")
     private BigDecimal saldo;
+
 
 
 }

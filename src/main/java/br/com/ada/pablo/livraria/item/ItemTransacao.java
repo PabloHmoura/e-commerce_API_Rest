@@ -3,7 +3,9 @@ package br.com.ada.pablo.livraria.item;
 import br.com.ada.pablo.livraria.livro.Livro;
 import br.com.ada.pablo.livraria.transacao.dto.CriarTransacaoDto;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
@@ -11,14 +13,17 @@ import java.math.BigDecimal;
 @Entity
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class ItemTransacao {
 
     @Id
     @Column(name = "item_transacao_id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "produto_id")
     private Livro livro;
     @Column
     private Integer quantidade;
@@ -33,7 +38,4 @@ public class ItemTransacao {
         this.precoTotal = this.precoUnitario.multiply(BigDecimal.valueOf(this.quantidade));
         this.livro = livro;
     }
-
-
-
 }

@@ -8,6 +8,7 @@ import br.com.ada.pablo.livraria.livro.LivroService;
 import br.com.ada.pablo.livraria.pessoa.Pessoa;
 import br.com.ada.pablo.livraria.pessoa.PessoaService;
 import br.com.ada.pablo.livraria.transacao.dto.CriarTransacaoDto;
+import br.com.ada.pablo.livraria.transacao.dto.ListarTransacoesDto;
 import br.com.ada.pablo.livraria.transacao.dto.TransacaoDto;
 import br.com.ada.pablo.livraria.util.validacoes.ValidaQuantidadeLivro;
 import br.com.ada.pablo.livraria.util.validacoes.ValidaSaldo;
@@ -59,7 +60,7 @@ public class TransacaoService {
         return transacaoRepository.save(transacao);
     }
 
-    public List<Transacao> list () {
+    public List<Transacao> list() {
         return transacaoRepository.findAll();
     }
 

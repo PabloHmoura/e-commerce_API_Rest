@@ -1,7 +1,7 @@
 package br.com.ada.pablo.livraria.model;
 
 
-import br.com.ada.pablo.livraria.util.Genero;
+import br.com.ada.pablo.livraria.util.enums.Genero;
 
 public class AlbunsMusica extends Produto {
 
